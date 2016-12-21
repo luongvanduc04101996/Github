@@ -45,4 +45,33 @@ Lệnh này sẽ truy cập vào dự án từ xa nào đó và cập nhật d�
 ```
 git fetch tên remote
 Bạn có thể git fetch upstream như repo mà ta đã firk phía trên
+```  
+###Các thiết lập ban đầu  
 ```
+Bạn cần thiết tập tên và email của mình để khi commit lên server sẽ nhận biết được ai đang commit lên1 repo (vì có thể nhiều người tham gia)
+__git config --global user.name "tên/username của bạn"__
+__git config --global user.email "email của bạn"__
+Lựa chọn trình soạn thảo mặc định (có thể không cần) như nano, vi, emacs,...
+__git config --global core.editor nano__
+Bạn có thể xem lại các thiết lập của mình
+__git config --list__
+```  
+###SSH  
+```
+Gõ 
+ssh -keygen -t rsa  
+ssh -agent -s  
+ssh -add ~/.ssh/id_rsa  
+cat .ssh//id_rsa.pub  
+
+```  
+Sau đó bạn dùng cat hay bất cứ lệnh nào hay cách nào để copy đoạn mã trong file id_rsa.pub và truy cập đường dẫnhttps://github.com/settings/ssh và chọn New SSH key để thêm key vào (bạn nhớ là đăng nhập vào tài khoản github trước).  
+Quay lại với terminal bạn có thể kiểm tra bằng cách đánh ssh git@github.com Nếu xuất hiện Hi username! You've successfully authenticated... thì chúc mừng bạn đã được liên kết với tài khoản github.  
+###Catching your Github password  
+Nếu bạn clone repo sử dụng HTTP thì có thể sử dụng 1 helper để lưu user/pass tài khoản github để tiện việc commit những thay đổi (sẽ không cần đánh user/pass lại)  
+Nếu bạn clone repo của github sử dụng SSH thì bạn sẽ xác thực bằng key SSH thay vì tên người dùng.  
+Để sử dụng helper bạn dùng lệnh sau:  
+```git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=1800'```
+__Lưu ý__: nếu bạn không thiết lập thời gian cho helper thì mặc định sẽ là 15 phút
+###
